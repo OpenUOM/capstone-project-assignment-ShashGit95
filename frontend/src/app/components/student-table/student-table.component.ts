@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router,NavigationExtras } from '@angular/router';
 import { faTrash, faPlus, faPenSquare } from '@fortawesome/free-solid-svg-icons';
-import {AppServiceService} from '../../app-service.service';
+import {AppServiceService} from 'src/app/app-service.service';
 @Component({
   selector: 'app-student-table',
   templateUrl: './student-table.component.html',
@@ -56,14 +56,13 @@ export class StudentTableComponent implements OnInit {
     if (value.length <= 0) {
       this.getStudentData();
     } else {
-      let b = this.studentData.filter((student) => {
-        if (student.name.toLowerCase().indexOf(value.toLowerCase()) > -1) {
-          foundItems.push(student)
+      for (const student in this.studentData) { 
+        if (student["name"].toLowerCase() === value.toLowerCase()){
+          foundItems.push(student);
         }
-      
-    
-      });
+      }
       this.studentData = foundItems;
     }
   }
+  
 }

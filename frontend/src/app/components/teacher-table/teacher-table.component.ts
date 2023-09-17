@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationExtras } from '@angular/router';
 import { faTrash, faPlus, faPenSquare } from '@fortawesome/free-solid-svg-icons';
-import { AppServiceService } from '../../app-service.service';
+import { AppServiceService } from 'src/app/app-service.service';
 @Component({
   selector: 'app-teacher-table',
   templateUrl: './teacher-table.component.html',
@@ -65,15 +65,16 @@ export class TeacherTableComponent implements OnInit {
     if (value.length <= 0) {
       this.getTeacherData();
     } else {
-      this.teacherData.filter((teacher) => {
-        if (teacher.name.toLowerCase() === value.toLowerCase()){
+      for(const teacher in this.teacherData) {
+        if (teacher["name"].toLowerCase() === value.toLowerCase()) {
           foundItems.push(teacher)
         }
-      });
+      }
       this.teacherData = foundItems;
     }
   }
-  
+
+
   
   deleteTeacher(itemid) {
     const test = {
